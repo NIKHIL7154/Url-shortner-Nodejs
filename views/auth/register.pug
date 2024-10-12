@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title UrlTown
+        link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet")
+        link(rel="stylesheet" href="style.css")
+    body
+        .form-body
+            .row
+                .form-holder
+                    .form-content
+                        .form-items
+                            h3 Welcome to UrlTown.
+                            p Start slicing long urls.
+                            form.requires-validation(id="mainform" novalidate action="/login" method="POST")
+                                .col-md-12
+                                    input.form-control(type="text" name="name" placeholder="Full Name" required)
+                                    .valid-feedback Name field is valid!
+                                    .invalid-feedback Name field cannot be blank!
+                                .col-md-12
+                                    input#emailtext.form-control(type="email" name="email" placeholder="E-mail Address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
+                                    .valid-feedback Email field is valid!
+                                    .invalid-feedback Enter valid email!
+                                .col-md-12
+                                    input.form-control(type="password" name="password" placeholder="Password" required
+                                        pattern=".{6,}"
+                                        title="Must be at least 6 characters long")
+                                    .valid-feedback Password field is valid!
+                                    .invalid-feedback Must be at least 6 characters long
+                                
+                                .buttondiv
+                                    .form-button.mt-3
+                                        button#submit.btn.btn-primary(type="submit") Register
+                                    .form-button.mt-3
+                                        a.btn.btn-primary(href="/") Login
+        script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+        script.
+            function main() {
+                $('#mainform').submit((event) => {
+                    var form = document.getElementById('mainform')
+                    if (!form.checkValidity()) {
+                        console.log(form.checkValidity());
+                        event.preventDefault();
+                    }
+                    form.classList.add("was-validated");
+                })
+            }
+            $(document).ready(() => {
+                main();
+            })
