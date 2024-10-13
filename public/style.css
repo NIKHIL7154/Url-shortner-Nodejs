@@ -112,3 +112,9 @@ html, body {
     align-items: center;
     margin-top: 20px;
 }
+#error{
+    color: red !important;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: -20px;
+}

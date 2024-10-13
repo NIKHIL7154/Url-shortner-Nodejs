@@ -1,0 +1,222 @@
+<html><head><title>UrlTown</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&amp;display=swap"/><style>html, body, .main {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+.main{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height:100%;
+    background-color:#f8f9fa
+
+}
+h1{
+    margin: 5px 0 0 0;
+    font-size:3vw;
+    font-weight:bold;
+
+}
+p{
+    margin:20px 0;
+    font-size: 2vw;
+}
+.urls-div{
+    border:2px solid black;
+    width:80%;
+    border-radius:15px;
+    overflow:hidden;
+    padding:0px;
+}
+tr{
+    border-bottom:1px solid rgb(0,0,0,0.2);
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+    overflow:hidden;
+}
+th{
+    color:white;
+
+    font-size:2.5vw;
+
+}
+th{
+    background-color:#007bff;
+}
+
+th, td{
+
+    wrap:break-word;
+
+    padding:10px;
+
+    font-size:2vw;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    max-width: 200px;
+
+}
+
+th:nth-child(1), td:nth-child(1) {
+
+    width: 35%;}
+
+
+
+
+
+
+
+
+
+th:nth-child(4),td:nth-child(4) {
+
+    width: 15%;}
+th:nth-child(3), td:nth-child(3) {
+
+    width: 10%;}
+th:nth-child(2), td:nth-child(2) {
+
+    width: 40%;
+        
+            }
+@media only screen and (min-width: 600px) {
+
+    th{
+        font-size:1.5vw;
+    }
+    td{
+        font-size:1.5vw;
+    }
+}
+a{
+    text-decoration:none;
+    color:black;
+    font-size:1.5vw;
+    background-color:black;
+    color:white;
+    padding:7px 15px;
+    border-radius:15px;
+    
+    border:1px solid black;
+}
+a:hover,.edit-btn:hover{
+    background-color:white;
+    color:black;
+}
+.edit-btn{
+    background-color:black;
+    color:white;
+    cursor:pointer;
+    padding:10.5px 15px;
+    border-radius:15px;
+    border:1px solid black;
+    font-size:1.5vw;
+}
+.actiondiv{
+    display:flex;
+    justify-content:venter;
+    align-items:center;
+    
+    gap:5px;
+}
+.edit-container{
+    display:flex;
+    width:100%;
+    height:100%;
+    position:absolute;
+    align-items:center;
+    justify-content:center;
+    background-color:rgba(0,0,0,0.5);
+}
+.edit-dialog{
+    background-color:white;
+    padding:30px;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    gap:10px;
+}
+.edit-form{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.edit-form input{
+    padding:10px;
+    border-radius:15px;
+    border:1px solid black;
+    font-size:1.2vw;
+    position:relative;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+    
+    &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    &::placeholder {
+        color: #6c757d;
+        transition: color 0.3s ease;
+    }
+
+    &:focus::placeholder {
+        color: transparent;
+    }
+}
+.dialog-buttons{
+    margin:-10px;
+    
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:space-around;
+    & button{
+        padding:10px 30px;
+        border-radius:15px;
+        border:none;
+        font-size:1.2vw;
+        cursor:pointer;
+    }
+}
+.close-btn{
+    background-color:black;
+    color:white;
+}
+.delete-btn{
+    background-color:red;
+    color:white;
+}
+</style></head><body><div class="main"> <h1>UrlTown</h1><p>Welcome to UrlTown, the place where you can shorten your URLs.</p><div class="edit-container"> <div class="edit-dialog"> <p>Edit you Short link</p><form class="edit-form" action="/slug/update" method="POST"><input id="destination" type="text" name="dest" placeholder="Enter your new URL" required="required"/><input id="slug" type="text" name="newuid" placeholder="Enter new ID" required="required"/><input id="prevslug" type="text" name="uid" placeholder="Enter new ID" required="required" hidden="hidden"/><button class="edit-btn" type="submit">Update</button></form><div class="dialog-buttons"> <button class="close-btn" onClick="document.querySelector('.edit-container').style.display='none'">Close</button><form action="/slug/delete" method="POST" style="margin:0"><input id="delslug" type="hidden" name="uid" value=""/><button class="delete-btn" type="submit">Delete</button></form></div></div></div><div class="urls-div"> <table><thead><tr> <th>URL</th><th>Short URL</th><th>UID</th><th>Action</th></tr></thead><tbody><tr> <td>https://www.google.com</td><td>https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv</td><td>1</td><td> <div class="actiondiv"> <a href="https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv" target="_blank">Visit Link</a><script>function handleEdit(event){
+    alert(event.target.name)
+    URLS=[{"url":"https://www.google.com","shortUrl":"https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv","uid":"1"},{"url":"https://www.google.c","shortUrl":"https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv","uid":"1"}]
+    obj=URLS.find((url)=>url.uid==event.target.name)
+    document.querySelector('#destination').value=obj.url
+    document.querySelector('#slug').value=obj.uid
+    document.querySelector('#delslug').value=obj.uid
+    document.querySelector('.edit-container').style.display='flex'
+}</script><button class="edit-btn" onClick="handleEdit(event)" name="1">Edit </button></div></td></tr><tr> <td>https://www.google.c</td><td>https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv</td><td>1</td><td> <div class="actiondiv"> <a href="https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv" target="_blank">Visit Link</a><script>function handleEdit(event){
+    alert(event.target.name)
+    URLS=[{"url":"https://www.google.com","shortUrl":"https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv","uid":"1"},{"url":"https://www.google.c","shortUrl":"https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv","uid":"1"}]
+    obj=URLS.find((url)=>url.uid==event.target.name)
+    document.querySelector('#destination').value=obj.url
+    document.querySelector('#slug').value=obj.uid
+    document.querySelector('#delslug').value=obj.uid
+    document.querySelector('.edit-container').style.display='flex'
+}</script><button class="edit-btn" onClick="handleEdit(event)" name="1">Edit </button></div></td></tr></tbody></table></div></div></body></html>

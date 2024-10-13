@@ -14,7 +14,7 @@ html(lang="en")
                         .form-items
                             h3 Welcome to UrlTown.
                             p Start slicing long urls.
-                            form.requires-validation(id="mainform" novalidate action="/login" method="POST")
+                            form.requires-validation(id="mainform" novalidate action="/register" method="POST")
                                 .col-md-12
                                     input.form-control(type="text" name="name" placeholder="Full Name" required)
                                     .valid-feedback Name field is valid!
@@ -35,6 +35,7 @@ html(lang="en")
                                         button#submit.btn.btn-primary(type="submit") Register
                                     .form-button.mt-3
                                         a.btn.btn-primary(href="/") Login
+                            p#error #{error}
         script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
         script.
             function main() {

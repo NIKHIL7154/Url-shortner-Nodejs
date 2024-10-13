@@ -1,0 +1,47 @@
+doctype html
+html
+    head
+        title Dashboard
+        link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+        script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js")
+        script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+    body
+        .container
+            .row
+                .col-md-6
+                    h1.my-4 URL Shortener Dashboard
+                .col-md-6.text-right
+                    form.my-4(action="/logout" method="post")
+                        button.btn.btn-danger(type="submit") Logout
+                    
+            - var urls = urls || [{url: "https://www.google.com", shortUrl: "https://urltown.herokuapp.com/short/1", uid: "1"}]
+            
+            if urls.length
+                table.table.table-striped
+                    thead.thead-dark
+                        tr
+                            th URL
+                            th Short URL
+                            th UID
+                            th Action
+                    tbody
+                        each urlObj in urls
+                            tr
+                                td= urlObj.url
+                                td= urlObj.shortUrl
+                                td= urlObj.uid
+                                td
+                                    a.btn.btn-danger(href=`${urlObj.shortUrl}`, target="_blank") Visit
+            else
+                p No URLs to display
+
+            h2.my-4 Create a New Short URL
+            form(action="/create" method="post")
+                .form-group
+                    label(for="uid") UID:
+                    input.form-control(type="text" name="uid" id="uid" required)
+                .form-group
+                    label(for="url") Long URL:
+                    input.form-control(type="url" name="url" id="url" required)
+                button.btn.btn-primary(type="submit") Create Short URL

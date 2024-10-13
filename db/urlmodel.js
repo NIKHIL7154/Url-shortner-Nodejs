@@ -1,7 +1,7 @@
 const {mongoose}=require('./config');
 
 const urlSchema = new mongoose.Schema({
-    url: {
+    dest: {
         type: String,
         required: true
     },

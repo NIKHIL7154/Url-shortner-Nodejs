@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>UrlTown</title><link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><div class="form-body"><div class="row"><div class="form-holder"><div class="form-content"><div class="form-items"><h3>Welcome back to UrlTown.</h3><p>Continue slicing long urls.</p><form class="requires-validation" id="mainform" novalidate action="/login" method="POST"><div class="col-md-12"><input class="form-control" id="emailtext" type="email" name="email" placeholder="E-mail Address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$"><div class="valid-feedback">Email field is valid!</div><div class="invalid-feedback">Enter valid email!</div></div><div class="col-md-12"><input class="form-control" type="password" name="password" placeholder="Password" required pattern=".{6,}" title="Must be at least 6 characters long"><div class="valid-feedback">Password field is valid!</div><div class="invalid-feedback">Must be at least 6 characters long</div></div><div class="buttondiv"><div class="form-button mt-3"><button class="btn btn-primary" id="submit" type="submit">Login</button></div><div class="form-button mt-3"><a class="btn btn-primary" href="/register">Register</a></div></div></form><p id="error"></p></div></div></div></div></div><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script>function main() {
+    $('#mainform').submit((event) => {
+        var form = document.getElementById('mainform')
+        if (!form.checkValidity()) {
+            console.log(form.checkValidity());
+            event.preventDefault();
+        }
+        form.classList.add("was-validated");
+    })
+}
+$(document).ready(() => {
+    main();
+})</script></body></html>
