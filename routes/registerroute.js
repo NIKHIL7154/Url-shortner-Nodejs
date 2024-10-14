@@ -16,7 +16,7 @@ router.post('/',async (req,res)=>{
         const hashedPassword= await bcrypt.hash(password,parseInt(saltRounds));
         const newUser= new User({name,email,password:hashedPassword,urls:[]});
         await newUser.save();
-        console.log('success');
+        
         req.session.message="Account created successfully. Please login.";
         res.redirect('/');
     }catch(err){
