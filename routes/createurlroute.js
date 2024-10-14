@@ -5,14 +5,16 @@ const saltRounds=process.env.SALT_ROUNDS;
 const User= require('../db/userModel');
 
 
-router.post('/create',async (req,res)=>{
+router.post('/',async (req,res)=>{
     const {dest,uid}=req.body;
-    if(!req.session.user){
-        req.session.message = 'You need to log in first';
-        res.redirect('/')
-        return
-    }
+    
     try{
+        const ifUrlExists= await Url.exists({uid:uid});
+        if(ifUrlExists){
+            req.session.homeMessage="This id is already taken by someone else.";
+            res.redirect('/home');
+            return
+        }
         const user= await User.findById(req.session.user.uid);
         const newUrl= new Url({dest,uid,shortUrl:"http://localhost:2001/c/"+uid});
         await newUrl.save();

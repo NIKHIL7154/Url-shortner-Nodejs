@@ -21,7 +21,7 @@ html
                 align-items:center;
                 height:100%;
                 background-color:#f8f9fa
-
+                
             }
             h1{
                 margin: 5px 0 0 0;
@@ -43,6 +43,9 @@ html
             tr{
                 border-bottom:1px solid rgb(0,0,0,0.2);
             }
+            tr:nth-child{
+                border:none;
+            }
             table{
                 width:100%;
                 border-collapse:collapse;
@@ -57,6 +60,9 @@ html
             }
             th{
                 background-color:#007bff;
+            }
+            input[type="submit"],form button{
+                border:none;
             }
 
             th, td{
@@ -201,6 +207,15 @@ html
                     cursor:pointer;
                 }
             }
+            .create-btn{
+                padding:10px 30px;
+                border-radius:15px;
+                border:none;
+                font-size:1.2vw;
+                cursor:pointer;
+                background-color:black;
+                color:white;
+            }
             .close-btn{
                 background-color:black;
                 color:white;
@@ -208,6 +223,24 @@ html
             .delete-btn{
                 background-color:red;
                 color:white;
+            }
+            .create-btn-div{
+                margin:15px 0;
+                padding:0px;
+                box-sizing:border-box;
+                display:flex;
+                justify-content:space-between;
+                gap:20px;
+                
+                width:80%;
+            }
+            .logout-btn{
+                background-color:red;
+                color:white;
+                padding:10px 20px;
+                border-radius:20px;
+                font-size:20px;
+                cursor:pointer;
             }
 
     body
@@ -217,7 +250,7 @@ html
             .edit-container 
                 .edit-dialog 
                     
-                    p Edit you Short link
+                    p Edit your Short link
                     form.edit-form(action="/slug/update", method="POST")
                         input#destination(type="text", name="dest", placeholder="Enter your new URL", required)
                         input#slug(type="text", name="newuid", placeholder="Enter new ID", required)
@@ -240,8 +273,13 @@ html
                         button.edit-btn(type="submit") Create
                     .dialog-buttons 
                         button.close-btn(onClick="document.querySelector('.create-container').style.display='none'") Close
-                        
-            button(onClick="document.querySelector('.create-container').style.display='flex'") Create Short Link
+            .create-btn-div 
+
+                button.create-btn(onClick="document.querySelector('.create-container').style.display='flex'") Create Short Link
+                p(style="color:red; font-size:15px; margin:0;") #{homeMessage}
+                form(action="/logout", method="POST", style="margin:0")
+                    button.logout-btn(type="submit") Logout
+                
             .urls-div 
                 - var urls = urls || [{url: "https://www.google.com", shortUrl: "https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv", uid: "1"},{url: "https://www.google.c", shortUrl: "https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv", uid: "1"}]
                 if urls.length

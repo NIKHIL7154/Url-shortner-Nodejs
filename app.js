@@ -29,18 +29,19 @@ app.use(session({
 }))
 
 
-//functionality routes
-app.use('/',registerRoute); //register route
-app.use("/",homeRoute); //home route
-app.use("/",createUrlRoute); //create url route
+//public routes
+app.use('/register',registerRoute); //register route
+app.use('/login',loginRoute); //login route
 app.use("/c",visitUrlRoute); //visit url route
+
+//protected routes
+app.use("/home",verifySession,homeRoute); //home route
+app.use("/create",verifySession,createUrlRoute); //create url route
 app.use("/slug",verifySession,slugRoutes); //slug route
-app.use('/',loginRoute); //login route
 
 
 //dafault routes
 app.get("/",(req,res)=>{
-    
     res.render('auth/login',{error:req.session.message});
 })
 app.get("/register",(req,res)=>{
@@ -49,10 +50,6 @@ app.get("/register",(req,res)=>{
 app.get("/error",(req,res)=>{
     res.render('404')
     return
-})
-
-app.get("/dems",(req,res)=>{
-    res.render("home/newdash",{urls:[{url:"https://www.google.com",shortUrl:"http://localhost:2001/c/1234",uid:4545}]})
 })
 
 //logout route
