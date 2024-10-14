@@ -52,6 +52,13 @@ app.get("/error",(req,res)=>{
     return
 })
 
+app.get("/yobaba",(req,res)=>{
+    const currentUrl = req.protocol + ' ++ ' + req.get('host')+' ++ ' + req.originalUrl;
+    console.log(currentUrl);
+    res.send(currentUrl);
+    return
+})
+
 //logout route
 app.post("/logout",(req,res)=>{
     store.destroy(req.sessionID,(err)=>{
@@ -66,8 +73,8 @@ app.post("/logout",(req,res)=>{
     
 })
 
-
+const PORT= 2001 || process.env.PORT;
 //start server
-app.listen(2001,()=>{
-    console.log('Server started at port 2001');
+app.listen(PORT,()=>{
+    console.log(`Server started at port ${PORT}`);
 })

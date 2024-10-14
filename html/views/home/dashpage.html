@@ -1,0 +1,295 @@
+<html><head><title>UrlTown</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&amp;display=swap"/><style>html, body, .main {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+.main{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    height:100%;
+    background-color:#f8f9fa
+    
+}
+h1{
+    margin: 5px 0 0 0;
+    font-size:3vw;
+    font-weight:bold;
+
+}
+p{
+    margin:20px 0;
+    font-size: 2vw;
+}
+.urls-div{
+    border:2px solid black;
+    width:80%;
+    border-radius:15px;
+    overflow:hidden;
+    padding:0px;
+}
+tr{
+    border-bottom:1px solid rgb(0,0,0,0.2);
+}
+tr:nth-child{
+    border:none;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+    overflow:hidden;
+}
+th{
+    color:white;
+
+    font-size:2.5vw;
+
+}
+th{
+    background-color:#007bff;
+}
+input[type="submit"],form button{
+    border:none;
+}
+
+th, td{
+
+    wrap:break-word;
+
+    padding:10px;
+
+    font-size:2vw;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    max-width: 200px;
+
+}
+
+th:nth-child(1), td:nth-child(1) {
+
+    width: 35%;}
+
+
+
+
+
+
+
+
+
+th:nth-child(4),td:nth-child(4) {
+
+    width: 15%;}
+th:nth-child(3), td:nth-child(3) {
+
+    width: 10%;}
+th:nth-child(2), td:nth-child(2) {
+
+    width: 40%;
+        
+            }
+@media only screen and (min-width: 600px) {
+
+    th{
+        font-size:1.5vw;
+    }
+    td{
+        font-size:1.5vw;
+    }
+}
+a{
+    text-decoration:none;
+    color:black;
+    font-size:1.5vw;
+    background-color:black;
+    color:white;
+    padding:7px 15px;
+    border-radius:15px;
+    
+    border:1px solid black;
+}
+a:hover,.edit-btn:hover{
+    background-color:white;
+    color:black;
+}
+.edit-btn{
+    background-color:black;
+    color:white;
+    cursor:pointer;
+    padding:10.5px 15px;
+    border-radius:15px;
+    border:1px solid black;
+    font-size:1.5vw;
+}
+.actiondiv{
+    display:flex;
+    justify-content:venter;
+    align-items:center;
+    
+    gap:5px;
+}
+.edit-container,.create-container{
+    display:none;
+    width:100%;
+    height:100%;
+    position:absolute;
+    align-items:center;
+    justify-content:center;
+    background-color:rgba(0,0,0,0.5);
+}
+.edit-dialog{
+    background-color:white;
+    padding:30px;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    gap:10px;
+}
+.edit-form{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.edit-form input{
+    padding:10px;
+    border-radius:15px;
+    border:1px solid black;
+    font-size:1.2vw;
+    position:relative;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+    
+    &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    &::placeholder {
+        color: #6c757d;
+        transition: color 0.3s ease;
+    }
+
+    &:focus::placeholder {
+        color: transparent;
+    }
+}
+.dialog-buttons{
+    margin:-10px;
+    
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:space-around;
+    & button{
+        padding:10px 30px;
+        border-radius:15px;
+        border:none;
+        font-size:1.2vw;
+        cursor:pointer;
+    }
+}
+.create-btn{
+    padding:10px 30px;
+    border-radius:15px;
+    border:none;
+    font-size:1.2vw;
+    cursor:pointer;
+    background-color:black;
+    color:white;
+}
+.close-btn{
+    background-color:black;
+    color:white;
+}
+.delete-btn{
+    background-color:red;
+    color:white;
+}
+.create-btn-div{
+    margin:15px 0;
+    padding:0px;
+    box-sizing:border-box;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    
+    width:80%;
+}
+.logout-btn{
+    background-color:red;
+    color:white;
+    padding:10px 20px;
+    border-radius:20px;
+    font-size:20px;
+    cursor:pointer;
+}
+</style></head><body><div class="main"> <h1>UrlTown</h1><p>Welcome to UrlTown, the place where you can shorten your URLs.</p><div class="edit-container"> <div class="edit-dialog"> <p>Edit your Short link</p><form class="edit-form" action="/slug/update" method="POST"><input id="destination" type="text" name="dest" placeholder="Enter your new URL" required="required"/><input id="slug" type="text" name="newuid" placeholder="Enter new ID" required="required"/><input id="prevslug" type="text" name="uid" placeholder="Enter new ID" required="required" hidden="hidden"/><button class="edit-btn" type="submit">Update</button></form><div class="dialog-buttons"> <button class="close-btn" onClick="document.querySelector('.edit-container').style.display='none'">Close</button><form action="/slug/delete" method="POST" style="margin:0"><input id="delslug" type="hidden" name="uid" value=""/><button class="delete-btn" type="submit">Delete</button></form></div></div></div><div class="create-container"> <div class="edit-dialog"> <p>Create you Short link</p><form class="edit-form" action="/create" method="POST"><input type="url" name="dest" placeholder="Enter your long URL" required="required"/><input type="text" name="uid" placeholder="Enter your ID" required="required"/><button class="edit-btn" type="submit">Create</button></form><div class="dialog-buttons"> <button class="close-btn" onClick="document.querySelector('.create-container').style.display='none'">Close</button></div></div></div><p style="margin:0; font-size:12px;">Your session will end in <span id="timeToEnd" style="color:red;">59:59 </span> minutes.</p><script>const sessionTime =  // Example: session created now
+const sessionDuration = 60 * 60 * 1000; // 1 hour in milliseconds
+
+// Function to calculate remaining time
+function getRemainingTime() {
+    const currentTime = new Date().getTime();
+    const elapsedTime = currentTime - sessionTime;
+    const remainingTime = sessionDuration - elapsedTime;
+    return remainingTime > 0 ? remainingTime : 0;
+}
+
+// Function to format the remaining time as MM:SS
+function formatTime(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+// Update the span with the remaining time
+function updateRemainingTime() {
+    const remainingTime = getRemainingTime();
+    const formattedTime = formatTime(remainingTime);
+
+    // Update the DOM element with id "timeToEnd"
+    
+    document.getElementById('timeToEnd').textContent = formattedTime;
+
+    // Stop the interval if time is up
+    if (remainingTime <= 0) {
+        clearInterval(interval);
+    }
+}
+
+// Run the update every second
+const interval = setInterval(updateRemainingTime, 1000);
+
+// Initial call to show the time immediately when page loads
+updateRemainingTime();</script><div class="create-btn-div"> <button class="create-btn" onClick="document.querySelector('.create-container').style.display='flex'">Create Short Link</button><p style="color:red; font-size:15px; margin:0;"></p><form action="/logout" method="POST" style="margin:0"><button class="logout-btn" type="submit">Logout</button></form></div><div class="urls-div"> <table><thead><tr> <th>URL</th><th>Short URL</th><th>UID</th><th>Action</th></tr></thead><tbody><tr> <td>https://www.google.com</td><td>http://localhost:3000/1</td><td>1</td><td> <div class="actiondiv"> <a href="http://localhost:3000/1" target="_blank">Visit Link</a><script>function handleEdit(event){
+    
+    URLS=[{"dest":"https://www.google.com","shortUrl":"http://localhost:3000/1","uid":"1"},{"dest":"https://www.facebook.com","shortUrl":"http://localhost:3000/2","uid":"2"}]
+    obj=URLS.find((url)=>url.uid==event.target.name)
+    document.querySelector('#destination').value=obj.dest
+    document.querySelector('#slug').value=obj.uid
+    document.querySelector('#prevslug').value=obj.uid
+    document.querySelector('#delslug').value=obj.uid
+    document.querySelector('.edit-container').style.display='flex'
+}</script><button class="edit-btn" onClick="handleEdit(event)" name="1">Edit </button></div></td></tr><tr> <td>https://www.facebook.com</td><td>http://localhost:3000/2</td><td>2</td><td> <div class="actiondiv"> <a href="http://localhost:3000/2" target="_blank">Visit Link</a><script>function handleEdit(event){
+    
+    URLS=[{"dest":"https://www.google.com","shortUrl":"http://localhost:3000/1","uid":"1"},{"dest":"https://www.facebook.com","shortUrl":"http://localhost:3000/2","uid":"2"}]
+    obj=URLS.find((url)=>url.uid==event.target.name)
+    document.querySelector('#destination').value=obj.dest
+    document.querySelector('#slug').value=obj.uid
+    document.querySelector('#prevslug').value=obj.uid
+    document.querySelector('#delslug').value=obj.uid
+    document.querySelector('.edit-container').style.display='flex'
+}</script><button class="edit-btn" onClick="handleEdit(event)" name="2">Edit </button></div></td></tr></tbody></table></div></div></body></html>

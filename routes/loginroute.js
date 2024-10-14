@@ -18,6 +18,7 @@ router.post('/',async (req,res)=>{
             res.render('auth/login',{error:"Invalid email or password"});
             return
         }
+        req.session.createdAt=Date.now();
         req.session.user={uid:user._id,name:user.name,email:user.email};
         res.redirect('/home');
 

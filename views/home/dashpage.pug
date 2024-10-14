@@ -273,6 +273,50 @@ html
                         button.edit-btn(type="submit") Create
                     .dialog-buttons 
                         button.close-btn(onClick="document.querySelector('.create-container').style.display='none'") Close
+                    
+            p(style="margin:0; font-size:12px;") Your session will end in 
+                span#timeToEnd(style="color:red;") 59:59 
+                |  minutes.
+            script.
+                const sessionTime = #{sessionCreatedTime} // Example: session created now
+                const sessionDuration = 60 * 60 * 1000; // 1 hour in milliseconds
+
+                // Function to calculate remaining time
+                function getRemainingTime() {
+                    const currentTime = new Date().getTime();
+                    const elapsedTime = currentTime - sessionTime;
+                    const remainingTime = sessionDuration - elapsedTime;
+                    return remainingTime > 0 ? remainingTime : 0;
+                }
+
+                // Function to format the remaining time as MM:SS
+                function formatTime(ms) {
+                    const totalSeconds = Math.floor(ms / 1000);
+                    const minutes = Math.floor(totalSeconds / 60);
+                    const seconds = totalSeconds % 60;
+                    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                }
+
+                // Update the span with the remaining time
+                function updateRemainingTime() {
+                    const remainingTime = getRemainingTime();
+                    const formattedTime = formatTime(remainingTime);
+
+                    // Update the DOM element with id "timeToEnd"
+                    
+                    document.getElementById('timeToEnd').textContent = formattedTime;
+
+                    // Stop the interval if time is up
+                    if (remainingTime <= 0) {
+                        clearInterval(interval);
+                    }
+                }
+
+                // Run the update every second
+                const interval = setInterval(updateRemainingTime, 1000);
+
+                // Initial call to show the time immediately when page loads
+                updateRemainingTime();
             .create-btn-div 
 
                 button.create-btn(onClick="document.querySelector('.create-container').style.display='flex'") Create Short Link
@@ -281,7 +325,7 @@ html
                     button.logout-btn(type="submit") Logout
                 
             .urls-div 
-                - var urls = urls || [{url: "https://www.google.com", shortUrl: "https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv", uid: "1"},{url: "https://www.google.c", shortUrl: "https://urltown.herokuapp.com/short/1/vsdgvsgvasjdhjsvdhasbdvashdvasdv", uid: "1"}]
+                
                 if urls.length
                     table
                         thead

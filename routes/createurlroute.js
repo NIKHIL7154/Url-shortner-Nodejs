@@ -15,8 +15,9 @@ router.post('/',async (req,res)=>{
             res.redirect('/home');
             return
         }
+        const currentUrl = req.protocol + '://' + req.get('host')+'/c/'
         const user= await User.findById(req.session.user.uid);
-        const newUrl= new Url({dest,uid,shortUrl:"http://localhost:2001/c/"+uid});
+        const newUrl= new Url({dest,uid,shortUrl:currentUrl+uid});
         await newUrl.save();
         user.urls.push(uid);
         await user.save();
