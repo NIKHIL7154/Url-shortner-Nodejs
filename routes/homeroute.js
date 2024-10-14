@@ -3,7 +3,7 @@ const express= require('express');
 const router = express.Router();
 
 const User= require('../db/userModel');
-const Url = require('../db/urlModel');
+const Url = require('../db/mark');
 const verifySession = require('../middle/session');
 
 //router.use(verifySession)

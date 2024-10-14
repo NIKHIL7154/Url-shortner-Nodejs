@@ -3,7 +3,7 @@ const express= require('express');
 const router = express.Router();
 
 const User= require('../db/userModel');
-const Url = require('../db/urlModel');
+const Url = require('../db/mark');
 
 router.get("/:urlid",async (req,res)=>{
     const urlid= req.params.urlid;
@@ -14,6 +14,7 @@ router.get("/:urlid",async (req,res)=>{
             return
         }
         res.redirect(url.dest);
+
         return
     }
     catch (error) {

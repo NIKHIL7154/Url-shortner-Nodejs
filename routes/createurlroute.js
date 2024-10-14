@@ -1,5 +1,5 @@
 const express= require('express');
-const Url= require('../db/urlModel');
+const Url= require('../db/mark');
 const router = express.Router();
 const saltRounds=process.env.SALT_ROUNDS;
 const User= require('../db/userModel');
