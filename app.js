@@ -52,12 +52,7 @@ app.get("/error",(req,res)=>{
     return
 })
 
-app.get("/yobaba",(req,res)=>{
-    const currentUrl = req.protocol + ' ++ ' + req.get('host')+' ++ ' + req.originalUrl;
-    console.log(currentUrl);
-    res.send(currentUrl);
-    return
-})
+
 
 //logout route
 app.post("/logout",(req,res)=>{

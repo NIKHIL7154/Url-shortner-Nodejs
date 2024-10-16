@@ -21,6 +21,7 @@ html
                 align-items:center;
                 height:100%;
                 background-color:#f8f9fa
+                overflow-y: scroll;
                 
             }
             h1{
@@ -37,8 +38,8 @@ html
                 border:2px solid black;
                 width:80%;
                 border-radius:15px;
-                overflow:hidden;
-                padding:0px;
+                margin: 0 0 20px 0;
+                padding:20px;
             }
             tr{
                 border-bottom:1px solid rgb(0,0,0,0.2);
@@ -51,10 +52,10 @@ html
                 border-collapse:collapse;
                 text-align:center;
                 overflow:hidden;
+                border-radius:13px
             }
             th{
                 color:white;
-
                 font-size:2.5vw;
 
             }
@@ -66,7 +67,7 @@ html
             }
 
             th, td{
-
+                
                 wrap:break-word;
 
                 padding:10px;
@@ -358,3 +359,8 @@ html
 
                 else 
                     p(style="text-align:center") No URLs to display
+            script.
+                function handleScroll() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            .div(style="color:blue; font-size:20px; cursor:pointer; margin-bottom:20px;",onClick="handleScroll()" ) Go to top
