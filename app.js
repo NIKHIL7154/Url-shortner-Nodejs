@@ -55,6 +55,9 @@ app.get("/error",(req,res)=>{
 app.get("/jenkin",(req,res)=>{
     res.send("Your misson is successful")
 })
+app.get("/testis2",(req,res)=>{
+    res.send("Your 2nd misson is successful")
+})
 
 
 
