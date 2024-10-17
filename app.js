@@ -72,7 +72,7 @@ app.post("/logout",(req,res)=>{
     
 })
 
-const PORT= 2001 || process.env.PORT;
+const PORT= 3000 || process.env.PORT;
 //start server
 app.listen(PORT,()=>{
     console.log(`Server started at port ${PORT}`);
