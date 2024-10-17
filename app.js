@@ -52,6 +52,10 @@ app.get("/error",(req,res)=>{
     return
 })
 
+app.get("/jenkin",(req,res)=>{
+    res.send("Your misson is successful")
+})
+
 
 
 //logout route
