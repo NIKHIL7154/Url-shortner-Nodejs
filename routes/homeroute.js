@@ -13,6 +13,10 @@ router.get('/',async (req,res)=>{
     const urlArray= user.urls;
     try {
         const urls = await Url.find({ uid: { $in: urlArray } });
+        const currentUrl = req.protocol + '://' + req.get('host')+'/c/'
+        urls.forEach(url=>{
+            url.shortUrl= currentUrl+url.uid
+        })
         const message= req.session.homeMessage;
         req.session.homeMessage = null
         res.render('home/dashpage', { urls ,homeMessage:message,sessionCreatedTime:req.session.createdAt});
